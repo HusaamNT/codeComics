@@ -3,3 +3,19 @@ body {
     padding: 0%;
     text-decoration: none;
 }
+
+section .hero-body img{
+   max-width: 100%;
+   height: 500px;
+   position: relative;
+   left: 105px;
+   
+}
+
+.title {
+    position: absolute;
+    top: 90px;
+    left: 180px;
+    font-family: 'Poppins',sans-serif;
+
+}
