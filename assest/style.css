@@ -19,3 +19,41 @@ section .hero-body img{
     font-family: 'Poppins',sans-serif;
 
 }
+.banner-card{
+    position: relative;
+    left: 200px;
+    
+}
+
+.banner-card img {
+    max-width: 100%;
+    height: auto;
+    width: 70%;
+
+}
+
+.banner-text {
+    position: absolute;
+    top: 1px;
+    left: 180px;
+    color: black;
+    padding: 20px;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.banner-text h4 {
+    font-size: 26px;
+    text-transform: uppercase;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.line {
+    border-left: 6px solid aliceblue;
+    height: 420px;
+    position: absolute;
+    left: 50%;
+    margin-left: -4px;
+    top: 800px;
+}
+
