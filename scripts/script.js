@@ -28,9 +28,14 @@ async function reddit(){ //fetching 20 hot posts from the characters searched su
         const marvelTitle = (data.data.children[i].data.title)
         const marvelText = (data.data.children[i].data.selftext)
         const marvelCommentCount = (data.data.children[i].data.num_comments)
+        const marvelImageURL = (data.data.children[i].data.thumbnail)
+        const marvelPerma = (data.data.children[i].data.permalink)
+        const marvelLink = ("https://www.reddit.com"+marvelPerma)
         console.log(marvelTitle)
         console.log(marvelCommentCount)
         console.log(marvelText)
+        console.log(marvelImageURL)
+        console.log(marvelLink)
         /*if (marvelText===""){
             continue
         }
