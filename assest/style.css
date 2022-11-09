@@ -13,12 +13,17 @@ span{
     color: #fc5c65;
     font-weight:900;
    
-  }
-   
+}
+
+.reddit  {
+    position: relative;
+    left: 40px;
+}
+
   footer{
     background: #f1f1f1;
     padding: 90px 0;
-  }
+}
    
   .footer-container{
     max-width: 1300px;
