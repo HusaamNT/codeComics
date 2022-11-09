@@ -11,15 +11,12 @@ async function marvel(){
     
 }
 //marvel()
-const marvelInputNoS = marvelInput.replace(/\s+/g, '');
 
+const marvelInputNoS = marvelInput.replace(/\s+/g, '');
 const marvelCharacter = marvelInputNoS.toLowerCase()
 
-
-
-
-async function reddit(){
-    const response = await fetch ("https://oauth.reddit.com/r/"+marvelCharacter+"/hot.json?limit=100",{
+async function reddit(){ //fetching 20 hot posts from the characters searched subreddit
+    const response = await fetch ("https://oauth.reddit.com/r/"+marvelCharacter+"/hot.json?limit=20",{ //change to 100 if using the search for loop
       headers: {  
         Authorization: "bearer 675480154540-Nsc4sE1KjfQ5v57WDjDkVh-aiXhH1w"
       }
@@ -30,7 +27,11 @@ async function reddit(){
     for (i=0; i < children; i++){
         const marvelTitle = (data.data.children[i].data.title)
         const marvelText = (data.data.children[i].data.selftext)
-        if (marvelText===""){
+        const marvelCommentCount = (data.data.children[i].data.num_comments)
+        console.log(marvelTitle)
+        console.log(marvelCommentCount)
+        console.log(marvelText)
+        /*if (marvelText===""){
             continue
         }
         if (marvelTitle.includes(marvelCharacter) || marvelText.includes(marvelCharacter)){
@@ -40,7 +41,7 @@ async function reddit(){
         else {
             console.log("No matches")
         } 
-    }
-}
+    }*/
+}}
 reddit()
 
