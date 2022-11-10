@@ -21,15 +21,8 @@ async function redditMarvel(){ //fetching 20 hot posts from the characters searc
         Authorization: "bearer 675480154540-RRiPTLQ2q6qgcWVIFYxl8hjPimu-AQ"
         }
 
-})};
-
-async function reddit(){ //fetching 20 hot posts from the characters searched subreddit
-    const response = await fetch ("https://oauth.reddit.com/r/"+marvelCharacter+"/hot.json?limit=20",{ //change to 100 if using the search for loop
-      headers: {  
-        Authorization: "bearer 675480154540-RRiPTLQ2q6qgcWVIFYxl8hjPimu-AQ"
-      }
-    })
-    const data = await response.json()
+})
+const data = await response.json()
     const children = (data.data.children.length)
     console.log(data)
     for (i=0; i < children; i++){
@@ -44,6 +37,30 @@ async function reddit(){ //fetching 20 hot posts from the characters searched su
         console.log(marvelText)
         console.log(marvelImageURL)
         console.log(marvelLink)
+}
+};
+
+async function reddit(){ //fetching 20 hot posts from the characters searched subreddit
+    const response = await fetch ("https://oauth.reddit.com/r/"+marvelCharacter+"/hot.json?limit=20",{ //change to 100 if using the search for loop
+      headers: {  
+        Authorization: "bearer 675480154540-RRiPTLQ2q6qgcWVIFYxl8hjPimu-AQ"
+      }
+    })
+    const data = await response.json()
+    const children = (data.data.children.length)
+    console.log(data)
+    for (i=0; i < children; i++){
+        const characterTitle = (data.data.children[i].data.title)
+        const characterText = (data.data.children[i].data.selftext)
+        const characterCommentCount = (data.data.children[i].data.num_comments)
+        const characterImageURL = (data.data.children[i].data.thumbnail)
+        const characterPerma = (data.data.children[i].data.permalink)
+        const characterLink = ("https://www.reddit.com"+characterPerma)
+        console.log(characterTitle)
+        console.log(characterCommentCount)
+        console.log(characterText)
+        console.log(characterImageURL)
+        console.log(characterLink)
         /*if (marvelText===""){
             continue
         }
