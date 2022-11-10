@@ -9,9 +9,11 @@ let searchBtn=document.getElementById("search-button")
 let characterInput=document.getElementById("search-box");
 
 //const searchBarInput2=searchBarInput.value
-const marvelInput = "hulk"
+const marvelInput = "spider-man"
 const marvelInputNoS = marvelInput.replace(/\s+/g, '');
-const marvelCharacter = marvelInputNoS.toLowerCase()
+
+const marvelInputNoD = marvelInputNoS.replace(/-/g, '');
+const marvelCharacter = marvelInputNoD.toLowerCase()
 
 //alert("js starting point work")
 // function search(event){
@@ -27,7 +29,7 @@ const marvelCharacter = marvelInputNoS.toLowerCase()
 //;/v1/public/characters/
 
 async function marvel(){
-    const response =await fetch("https://gateway.marvel.com/v1/public/characters?nameStartsWith="+marvelCharacter+"&ts=1&apikey=c6c410f564a7361717294de109f25d9a&hash=bb8d62d7bf94d0ca3c9a989e86a12dda");
+    const response =await fetch("https://gateway.marvel.com/v1/public/characters?nameStartsWith="+marvelInputNoS+"&limit=100&ts=1&apikey=c6c410f564a7361717294de109f25d9a&hash=bb8d62d7bf94d0ca3c9a989e86a12dda");
     const data = await response.json()  
     const name_loop=data.data.count
     console.log(data)
@@ -45,7 +47,7 @@ async function marvel(){
           <div class="card-content">
             <div class="has-text-centered">
               <span class="is-size-1">
-                <img src=${characterImage} width="128">
+                <img src=${characterImage} width="300">
               </span>
             </div>
             <p class="title is-4">
@@ -160,3 +162,4 @@ async function reddit(){ //fetching 20 hot posts from the characters searched su
 }}
 
 //const cardInfo = 
+reddit()
