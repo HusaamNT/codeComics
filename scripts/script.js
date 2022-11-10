@@ -6,10 +6,10 @@ let characterPhoto=document.getElementById("character-photo")
 let characterPhotoLink=""
 
 let searchBtn=document.getElementById("search-button")
-let marvelInput=document.getElementById("search-box");
+let characterInput=document.getElementById("search-box");
 
 //const searchBarInput2=searchBarInput.value
-
+const marvelInput = "hulk"
 const marvelInputNoS = marvelInput.replace(/\s+/g, '');
 const marvelCharacter = marvelInputNoS.toLowerCase()
 
@@ -23,23 +23,53 @@ const marvelCharacter = marvelInputNoS.toLowerCase()
 //     return response.json()
 // } )
 
-async function marvel(){
-    const response =await fetch("https://gateway.marvel.com/v1/public/characters?nameStartsWith="+marvelInput+"&ts=1&apikey=c6c410f564a7361717294de109f25d9a&hash=bb8d62d7bf94d0ca3c9a989e86a12dda");
-    const data = await response.json()
-    console.log(data)   
+//https://gateway.marvel.com/v1/public/characters?nameStartsWith="+marvelCharacter+"&ts=1&apikey=c6c410f564a7361717294de109f25d9a&hash=bb8d62d7bf94d0ca3c9a989e86a12dda")
+//;/v1/public/characters/
 
+async function marvel(){
+    const response =await fetch("https://gateway.marvel.com/v1/public/characters?nameStartsWith="+marvelCharacter+"&ts=1&apikey=c6c410f564a7361717294de109f25d9a&hash=bb8d62d7bf94d0ca3c9a989e86a12dda");
+    const data = await response.json()  
     const name_loop=data.data.count
-     console.log(data)
+    console.log(data)
      console.log("name_loop is "+name_loop)
       for(i=0;i<name_loop-1;i++){
-       
+        const characterName = (data.data.results[i].name)
+        const characterImage = (data.data.results[i].thumbnail.path+".jpg")
+        const characterDescription = (data.data.results[i].description)
+        console.log(characterImage)
+        
+        const headingElement = $(`
 
+        <div class="column">
+          <div class="card">
+          <div class="card-content">
+            <div class="has-text-centered">
+              <span class="is-size-1">
+                <img src=${characterImage} width="128">
+              </span>
+            </div>
+            <p class="title is-4">
+              ${characterName}
+            </p>
+            <div class="content">
+            ${characterDescription}
+            </div>
+          </div>
+          <footer class="card-footer">
+          
+            <a href="#" class="card-footer-item">Learn more</a>
+          </footer>
+          </div>
+        </div>
+
+`);
+
+$("body").append(headingElement);
+
+}
 
         //console.log("name_for_loop runs normally")
         //console.log(data.data.results[i])
-        const characterName = (data.data.results[i].name)
-        const characterImage = (data.data.results[i].thumbnail.path)
-        const characterDescription = (data.data.results[i].description)
 
         // characterNameDisplay=[]
         // characterNameDisplay[i]=document.createElement("h1")
@@ -61,36 +91,15 @@ async function marvel(){
 
        
 
-        console.log("characterNameDisplay: "+characterNameDisplay)
-        console.log("name_for_loop runs normally")
+        // console.log("characterNameDisplay: "+characterNameDisplay)
+        // console.log("name_for_loop runs normally")
         
-      //   return(
-      // <div class="columns pt-6">
-      // <div class="column">
-      //   <div class="card">
-      //   <div class="card-content">
-      //     <div class="has-text-centered">
-      //       <span class="icon is-size-1 py-6 ny-3">
-      //         <i class="fas fa-code"></i>
-      //       </span>
-      //     </div>
-      //     <p class id="characterName[i]" ="title is-4">
-      //       Name
-      //     </p>
-      //     <div class="content">
-      //       Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum, provident? Laboriosam nobis nihil mollitia magnam hic velit reprehenderit at, laudantium perferendis veniam aspernatur quam ex consequuntur nemo harum maiores rerum.
-      //     </div>
-      //   </div>
-      //   <footer class="card-footer">
-      //     <a href="#" class="card-footer-item">Learn more</a>
-      //   </footer>
-      //   </div>
-      // </div>)
+      
         
         
 
-    }
-} 
+};
+marvel()
 
 async function redditMarvel(){ //fetching 20 hot posts from the characters searched subreddit
     const response = await fetch ("https://oauth.reddit.com/r/marvel/hot.json?limit=20",{ //change to 100 if using the search for loop
@@ -149,6 +158,5 @@ async function reddit(){ //fetching 20 hot posts from the characters searched su
         }
     }*/
 }}
-reddit()
 
 //const cardInfo = 
