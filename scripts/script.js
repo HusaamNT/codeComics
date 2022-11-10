@@ -41,7 +41,8 @@ async function marvel(){
         console.log(characterImage)
         
         const headingElement = $(`
-
+        
+        
         <div class="column">
           <div class="card">
           <div class="card-content">
@@ -63,10 +64,11 @@ async function marvel(){
           </footer>
           </div>
         </div>
+        
 
 `);
 
-$("body").append(headingElement);
+$("#card-container").append(headingElement);
 
 }
 
