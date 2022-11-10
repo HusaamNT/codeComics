@@ -9,6 +9,7 @@ body {
     background: url(./Images/Avengers-wallpaper-spriderman.jpg);
 }
 
+
 span{
     color: #fc5c65;
     font-weight:900;
@@ -25,15 +26,14 @@ span{
     right: 40px;
 }
 
-
-
+/*-- FOOTER --*/
 
 footer{
     background: #f1f1f1;
     padding: 90px 0;
 }
    
-  .footer-container{
+.footer-container{
     max-width: 1300px;
     margin: auto;
     padding: 0 20px;
@@ -41,46 +41,46 @@ footer{
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap-reverse;
-  }
+}
    
-  .logo{
+.logo{
     width: 180px;
-  }
+}
    
-  .social-media{
+.social-media{
     margin: 20px 0;
-  }
+}
    
-  .social-media a{
+.social-media a{
     color: #001a21;
     margin-right: 25px;
     font-size: 22px;
     text-decoration: none;
     transition: .3s linear;
-  }
+}
    
-  .social-media a:hover{
+.social-media a:hover{
     color: #fc5c65;
-  }
+}
    
-  .right-col h1{
+.right-col h1{
     font-size: 26px;
-  }
+}
    
-  .border{
+.border{
     width: 100px;
     height: 4px;
     background: #fc5c65;
-  }
+}
    
-  .newsletter-form{
+.newsletter-form{
     display: flex;
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
-  }
+}
    
-  .txtb{
+.txtb{
     flex: 1;
     padding: 18px 40px;
     font-size: 16px;
@@ -91,9 +91,9 @@ footer{
     outline: none;
     border-radius: 30px;
     min-width: 260px;
-  }
+}
    
-  .btn{
+.btn{
     padding: 18px 40px;
     font-size: 16px;
     color: #f1f1f1;
@@ -105,40 +105,43 @@ footer{
     margin-left: 20px;
     cursor: pointer;
     transition: opacity .3s linear;
-  }
+}
    
-  .btn:hover{
+.btn:hover{
     opacity: .7;
-  }
+}
    
-  .page-content{
+.page-content{
     min-height: 100vh;
     font-size: 40px;
     display: flex;
     align-items: center;
     justify-content: center;
-  }
-   
-  @media screen and (max-width:960px) {
+}
+/*-- MEDIA SCREEN 960px --*/   
+@media screen and (max-width:960px) {
     .footer-container{
       max-width: 600px;
-    }
-    .right-col{
+}
+
+.right-col{
       width: 100%;
       margin-bottom: 60px;
-    }
+}
    
-    .left-col{
+.left-col{
       width: 100%;
       text-align: center;
-    }
-  }
+}
+
+}
    
-   
-  @media screen and (max-width:700px){
-    .btn{
+/*-- MEDIA SCREEN 700px --*/   
+@media screen and (max-width:700px){
+.btn{
       margin: 0;
       width: 100%;
       margin-top: 20px;
-      }
-  }
+}
+
+}
