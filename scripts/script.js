@@ -59,7 +59,7 @@ async function marvel(){
           </div>
           <footer class="card-footer">
           
-            <a href="${}" class="card-footer-item">Learn more</a>
+            <a href="#" class="card-footer-item">Learn more</a>
           </footer>
           </div>
         </div>
