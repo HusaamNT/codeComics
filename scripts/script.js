@@ -18,7 +18,7 @@ const marvelCharacter = marvelInputNoS.toLowerCase()
 async function reddit(){ //fetching 20 hot posts from the characters searched subreddit
     const response = await fetch ("https://oauth.reddit.com/r/"+marvelCharacter+"/hot.json?limit=20",{ //change to 100 if using the search for loop
       headers: {  
-        Authorization: "bearer 675480154540-Nsc4sE1KjfQ5v57WDjDkVh-aiXhH1w"
+        Authorization: "bearer 675480154540-RRiPTLQ2q6qgcWVIFYxl8hjPimu-AQ"
       }
     })
     const data = await response.json()
@@ -50,3 +50,4 @@ async function reddit(){ //fetching 20 hot posts from the characters searched su
 }}
 reddit()
 
+//const cardInfo = $
