@@ -3,7 +3,7 @@ const redditAPI = document.querySelector("")
 const marvelAPI = document.querySelector("")
 const marvelInput = document.querySelector("")
 */
-const marvelInput = "SPIDERMAN"
+const marvelInput = "SPIDER MAN"
 async function marvel(){
     const response =await fetch("https://gateway.marvel.com/v1/public/characters?nameStartsWith="+marvelInput+"&ts=1&apikey=c6c410f564a7361717294de109f25d9a&hash=bb8d62d7bf94d0ca3c9a989e86a12dda");
     const data = await response.json()
