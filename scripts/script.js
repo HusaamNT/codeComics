@@ -8,9 +8,11 @@ let characterPhotoLink = "";
 let searchBtn = document.getElementById("search-button");
 let characterInput = document.getElementById("search-box");
 
+
 const search = function(){
   marvel()
   reddit()
+  
 }
 
 // const marvelInput = characterInput.value
@@ -38,6 +40,60 @@ searchBtn.addEventListener("click", search)
 //https://gateway.marvel.com/v1/public/characters?nameStartsWith="+marvelCharacter+"&ts=1&apikey=c6c410f564a7361717294de109f25d9a&hash=bb8d62d7bf94d0ca3c9a989e86a12dda")
 //;/v1/public/characters/
 
+async function marvelDefault() {
+  const defaultCharacters = ["iron_man","moon_knight", "thanos", "doctor_strange"]
+  const marvelFeatured = defaultCharacters.length
+  for (i = 0; i < marvelFeatured; i++){
+  const response = await fetch(
+    "https://gateway.marvel.com/v1/public/characters?nameStartsWith=" +
+      defaultCharacters[i] +
+      "&limit=100&ts=1&apikey=c6c410f564a7361717294de109f25d9a&hash=bb8d62d7bf94d0ca3c9a989e86a12dda"
+  );
+  const data = await response.json();
+  const name_loop = data.data.count;
+
+  console.log(data);
+  console.log("name_loop is " + name_loop);
+  
+  }
+  for (i = 0; i < name_loop - 1; i++) {
+    const characterName = data.data.results[i].name;
+    const characterImage = data.data.results[i].thumbnail.path + ".jpg";
+    const characterDescription = data.data.results[i].description;
+    console.log(characterImage);
+
+    const headingElement = $(`
+        
+        <div class="columns pt-6">
+        <div class="column">
+          <div class="card">
+          <div class="card-content">
+            <div class="has-text-centered">
+              <span class="is-size-1">
+                <img src=${characterImage} width="300">
+              </span>
+            </div>
+            <p class="title is-4">
+              ${characterName}
+            </p>
+            <div class="content">
+            ${characterDescription}
+            </div>
+          </div>
+          <footer class="card-footer">
+          
+            <a href="#" class="card-footer-item">Learn more</a>
+          </footer>
+          </div>
+        </div>
+        </div>
+        </div>
+
+`);
+$("#card-container").append(headingElement);
+}};
+marvelDefault()
+
 async function marvel() {
   const marvelInput = characterInput.value
 
@@ -61,7 +117,6 @@ async function marvel() {
 
     const headingElement = $(`
         
-        <div class="columns pt-6 is-flex-direction-row">
         <div class="columns pt-6">
         <div class="column">
           <div class="card">
@@ -232,3 +287,4 @@ async function reddit() {
 
 //reddit();
 //marvel()
+
