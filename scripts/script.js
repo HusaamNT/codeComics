@@ -9,7 +9,12 @@ let searchBtn=document.getElementById("search-button")
 let characterInput=document.getElementById("search-box");
 
 //const searchBarInput2=searchBarInput.value
-const marvelInput = "spider-man"
+//searchBtn.addEventListener("click", search)
+//const search = function(){
+//  const marvelInput = characterInput.textContent
+//}
+const marvelInput= "spid"
+
 const marvelInputNoS = marvelInput.replace(/\s+/g, '');
 
 const marvelInputNoD = marvelInputNoS.replace(/-/g, '');
@@ -42,7 +47,7 @@ async function marvel(){
         
         const headingElement = $(`
         
-        
+        <div class="columns pt-6">
         <div class="column">
           <div class="card">
           <div class="card-content">
@@ -64,7 +69,7 @@ async function marvel(){
           </footer>
           </div>
         </div>
-        
+        </div>
 
 `);
 
@@ -150,6 +155,44 @@ async function reddit(){ //fetching 20 hot posts from the characters searched su
         console.log(characterTextR)
         console.log(characterImageURLR)
         console.log(characterLinkR)
+        
+        const headingElement = $(`
+        <article class="media" id="redditPost3">
+        <figure class="media-left">
+          <p class="image is-64x64">
+            <img src="./assest/Images/profile-1.webp" width="128" height="128" alt="Profile-Picture">
+          </p>
+        </figure>
+        <div class="media-content" id="post-1">
+          <div class="content" id="post-1-content">
+            <p>
+              <strong>${characterTitleR}</strong> <small>${characterTitleR}</small> <small>31m</small>
+              <br>
+              ${characterTextR}
+            </p>
+          </div>
+          <nav class="level is-mobile">
+            <div class="level-left">
+              <a class="level-item">
+                <span class="icon is-small"><i class="fas fa-reply"></i></span>
+              </a>
+              <a class="level-item">
+                <span class="icon is-small"><i class="fas fa-retweet"></i></span>
+              </a>
+              <a class="level-item">
+                <span class="icon is-small"><i class="fas fa-heart"></i></span>
+              </a>
+            </div>
+          </nav>
+        </div>
+        <div class="media-right">
+          <button class="delete"></button>
+        </div>
+      </article>
+`);
+$("#reddit").append(headingElement);
+
+
         /*if (marvelText===""){
             continue
         }
