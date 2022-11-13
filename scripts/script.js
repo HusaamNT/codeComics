@@ -54,7 +54,7 @@ async function marvelDefault() {
 
   console.log(data);
   console.log("name_loop is " + name_loop);
-  
+
   }
   for (i = 0; i < name_loop - 1; i++) {
     const characterName = data.data.results[i].name;
@@ -178,7 +178,7 @@ async function redditMarvel() {
     {
       //change to 100 if using the search for loop
       headers: {
-        Authorization: "bearer 675480154540-QX6bmNuDFuuK7-TpeNuJDwXt1_hmdg",
+        Authorization: "bearer 675480154540-bdOolcI7Pbyzqlz0dyVINbzLaBHFaQ",
       },
     }
   );
