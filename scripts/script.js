@@ -11,6 +11,7 @@ let characterInput = document.getElementById("search-box");
 
 const search = function(){
   $("#card-container").empty();
+  $("#reddit").empty();
   marvel()
   reddit()
 }
@@ -51,7 +52,7 @@ async function marvelDefault() {
       "&limit=100&ts=1&apikey=c6c410f564a7361717294de109f25d9a&hash=bb8d62d7bf94d0ca3c9a989e86a12dda"
   );
   const data = await response.json();
-  const name_loop = data.data.count;
+  name_loop = data.data.count
 
   console.log(data);
   console.log("name_loop is " + name_loop);
@@ -64,8 +65,7 @@ async function marvelDefault() {
       continue
     }
     const headingElement = $(`
-        <div class="columns pt-6 is-flex-direction-row"
-        <div class="columns pt-6">
+
         <div class="column">
           <div class="card">
           <div class="card-content">
@@ -86,14 +86,12 @@ async function marvelDefault() {
             <a href="#" class="card-footer-item">Learn more</a>
           </footer>
           </div>
-        </div>
-        </div>
+
 
 
 `);
 $("#card-container").append(headingElement);
 }
-return
 }};
 
 
@@ -122,7 +120,7 @@ async function marvel() {
     else{
     const headingElement = $(`
         
-        <div class="columns pt-6">
+
         <div class="column">
           <div class="card">
           <div class="card-content">
@@ -145,7 +143,7 @@ async function marvel() {
           </div>
         </div>
         </div>
-        </div>
+
 
 `);
 
@@ -242,7 +240,7 @@ async function reddit() {
         <article class="media" id="redditPost3">
         <figure class="media-left">
           <p class="image is-64x64">
-            <img src="./assest/Images/profile-1.webp" width="128" height="128" alt="Profile-Picture">
+            <img src="${characterImageURLR}" width="128" height="128" alt="Profile-Picture">
           </p>
         </figure>
         <div class="media-content" id="post-1">
@@ -296,7 +294,7 @@ async function reddit() {
 async function redditDefault() {
   //fetching 20 hot posts from the characters searched subreddit
   const response = await fetch(
-    "https://oauth.reddit.com/r/marvel/hot.json?limit=20",
+    "https://oauth.reddit.com/r/marvel/top.json?limit=20",
     {
       //change to 100 if using the search for loop
       headers: {
@@ -314,6 +312,7 @@ async function redditDefault() {
     const characterImageURLR = data.data.children[i].data.thumbnail;
     const characterPermaR = data.data.children[i].data.permalink;
     const characterLinkR = "https://www.reddit.com" + characterPermaR;
+    const characterCommentCount = "Comments: " + characterCommentCountR
     console.log(characterTitleR);
     console.log(characterCommentCountR);
     console.log(characterTextR);
@@ -325,13 +324,13 @@ async function redditDefault() {
         <article class="media" id="redditPost3">
         <figure class="media-left">
           <p class="image is-64x64">
-            <img src="./assest/Images/profile-1.webp" width="128" height="128" alt="Profile-Picture">
+            <img src="${characterImageURLR}" width="128" height="128">
           </p>
         </figure>
         <div class="media-content" id="post-1">
           <div class="content" id="post-1-content">
             <p>
-              <strong>${characterTitleR}</strong> <small>${characterTitleR}</small> <small>31m</small>
+              <href<strong>${characterTitleR}</strong> <small>${characterTitleR}</small> <small></small>
               <br>
               ${characterTextR}
             </p>
