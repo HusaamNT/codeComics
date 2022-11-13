@@ -43,6 +43,7 @@ searchBtn.addEventListener("click", search)
 async function marvelDefault() {
   const defaultCharacters = ["iron_man","moon_knight", "thanos", "doctor_strange"]
   const marvelFeatured = defaultCharacters.length
+  let name_loop;
   for (i = 0; i < marvelFeatured; i++){
   const response = await fetch(
     "https://gateway.marvel.com/v1/public/characters?nameStartsWith=" +
@@ -55,13 +56,13 @@ async function marvelDefault() {
   console.log(data);
   console.log("name_loop is " + name_loop);
 
-  }
   for (i = 0; i < name_loop - 1; i++) {
     const characterName = data.data.results[i].name;
     const characterImage = data.data.results[i].thumbnail.path + ".jpg";
     const characterDescription = data.data.results[i].description;
-    console.log(characterImage);
-
+    if (characterDescription ===  ""){
+      continue
+    }
     const headingElement = $(`
         <div class="columns pt-6 is-flex-direction-row"
         <div class="columns pt-6">
@@ -91,6 +92,8 @@ async function marvelDefault() {
 
 `);
 $("#card-container").append(headingElement);
+}
+return
 }};
 
 
@@ -113,8 +116,10 @@ async function marvel() {
     const characterName = data.data.results[i].name;
     const characterImage = data.data.results[i].thumbnail.path + ".jpg";
     const characterDescription = data.data.results[i].description;
-    console.log(characterImage);
-
+    if (characterDescription ===  ""){
+      continue
+    }
+    else{
     const headingElement = $(`
         
         <div class="columns pt-6">
@@ -145,7 +150,7 @@ async function marvel() {
 `);
 
     $("#card-container").append(headingElement);
-  }
+  }}
 
   //console.log("name_for_loop runs normally")
   //console.log(data.data.results[i])
