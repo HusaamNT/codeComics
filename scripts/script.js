@@ -10,9 +10,9 @@ let characterInput = document.getElementById("search-box");
 
 
 const search = function(){
+  $("#card-container").empty();
   marvel()
   reddit()
-  
 }
 
 // const marvelInput = characterInput.value
@@ -63,7 +63,7 @@ async function marvelDefault() {
     console.log(characterImage);
 
     const headingElement = $(`
-        
+        <div class="columns pt-6 is-flex-direction-row"
         <div class="columns pt-6">
         <div class="column">
           <div class="card">
@@ -87,12 +87,12 @@ async function marvelDefault() {
           </div>
         </div>
         </div>
-        </div>
+
 
 `);
 $("#card-container").append(headingElement);
 }};
-marvelDefault()
+
 
 async function marvel() {
   const marvelInput = characterInput.value
@@ -213,7 +213,7 @@ async function reddit() {
     {
       //change to 100 if using the search for loop
       headers: {
-        Authorization: "bearer 675480154540-RRiPTLQ2q6qgcWVIFYxl8hjPimu-AQ",
+        Authorization: "bearer 675480154540-bdOolcI7Pbyzqlz0dyVINbzLaBHFaQ",
       },
     }
   );
@@ -288,3 +288,90 @@ async function reddit() {
 //reddit();
 //marvel()
 
+async function redditDefault() {
+  //fetching 20 hot posts from the characters searched subreddit
+  const response = await fetch(
+    "https://oauth.reddit.com/r/marvel/hot.json?limit=20",
+    {
+      //change to 100 if using the search for loop
+      headers: {
+        Authorization: "bearer 675480154540-bdOolcI7Pbyzqlz0dyVINbzLaBHFaQ",
+      },
+    }
+  );
+  const data = await response.json();
+  const children = data.data.children.length;
+  console.log(data);
+  for (i = 0; i < children; i++) {
+    const characterTitleR = data.data.children[i].data.title;
+    const characterTextR = data.data.children[i].data.selftext;
+    const characterCommentCountR = data.data.children[i].data.num_comments;
+    const characterImageURLR = data.data.children[i].data.thumbnail;
+    const characterPermaR = data.data.children[i].data.permalink;
+    const characterLinkR = "https://www.reddit.com" + characterPermaR;
+    console.log(characterTitleR);
+    console.log(characterCommentCountR);
+    console.log(characterTextR);
+    console.log(characterImageURLR);
+    console.log(characterLinkR);
+
+    const headingElement = $(`
+
+        <article class="media" id="redditPost3">
+        <figure class="media-left">
+          <p class="image is-64x64">
+            <img src="./assest/Images/profile-1.webp" width="128" height="128" alt="Profile-Picture">
+          </p>
+        </figure>
+        <div class="media-content" id="post-1">
+          <div class="content" id="post-1-content">
+            <p>
+              <strong>${characterTitleR}</strong> <small>${characterTitleR}</small> <small>31m</small>
+              <br>
+              ${characterTextR}
+            </p>
+          </div>
+          <nav class="level is-mobile">
+            <div class="level-left">
+              <a class="level-item">
+                <span class="icon is-small"><i class="fas fa-reply"></i></span>
+              </a>
+              <a class="level-item">
+                <span class="icon is-small"><i class="fas fa-retweet"></i></span>
+              </a>
+              <a class="level-item">
+                <span class="icon is-small"><i class="fas fa-heart"></i></span>
+              </a>
+            </div>
+          </nav>
+        </div>
+        <div class="media-right">
+          <button class="delete"></button>
+        </div>
+      </article>
+`);
+    $("#reddit").append(headingElement);
+
+    /*if (marvelText===""){
+            continue
+        }
+        if (marvelTitle.includes(marvelCharacter) || marvelText.includes(marvelCharacter)){
+            console.log(marvelTitle)
+            console.log(marvelText)
+        }
+        else {
+            console.log("No matches")
+        }
+    }*/
+  }
+}
+
+//const cardInfo =
+
+//reddit();
+//marvel()
+
+if (characterInput.value.length == 0){
+  marvelDefault()
+  redditDefault()
+}
