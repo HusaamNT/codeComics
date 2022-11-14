@@ -381,5 +381,5 @@ async function redditDefault() {
 
 if (characterInput.value.length == 0) {
   marvelDefault()
-  // redditDefault()
+  redditDefault()
 }
