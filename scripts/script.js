@@ -85,6 +85,7 @@ async function marvelDefault() {
             <a href="#" class="card-footer-item">Learn more</a>
           </footer>
           </div>
+          </div>
 
 
 

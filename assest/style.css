@@ -16,6 +16,10 @@ span{
    
 }
 
+#comics {
+    position: relative;
+    top: 50px;
+}
 
 #reddit  {
     position: relative;
