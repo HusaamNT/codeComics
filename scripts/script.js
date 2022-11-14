@@ -11,9 +11,8 @@ let characterInput = document.getElementById("search-box");
 
 const search = function(){
   $("#card-container").empty();
-  $("#reddit").empty();
   marvel()
-  reddit()
+
 }
 
 // const marvelInput = characterInput.value
@@ -305,7 +304,7 @@ async function redditDefault() {
   const data = await response.json();
   const children = data.data.children.length;
   console.log(data);
-  for (i = 0; i < children; i++) {
+  for (i = 0; i < 12; i++) {
     const characterTitleR = data.data.children[i].data.title;
     const characterTextR = data.data.children[i].data.selftext;
     const characterCommentCountR = data.data.children[i].data.num_comments;

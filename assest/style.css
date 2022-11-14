@@ -16,9 +16,11 @@ span{
    
 }
 
-.reddit  {
+
+#reddit  {
     position: relative;
     left: 40px;
+    flex-direction: column;
 }
 
 .media {
