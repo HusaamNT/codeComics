@@ -1,3 +1,4 @@
+'use strict'
 let characterName = document.getElementById("character-name");
 let characterNameDisplay = "";
 let characterDiscription = document.getElementById("character-description");
@@ -44,7 +45,8 @@ async function marvelDefault() {
   const defaultCharacters = ["iron_man", "moon_knight", "thanos", "doctor_strange"]
   const marvelFeatured = defaultCharacters.length
   let name_loop;
-  for (i = 0; i < marvelFeatured; i++) {
+  for (let i = 0; i < marvelFeatured; i++) {
+    console.log("i is " + i)
     const response = await fetch(
       "https://gateway.marvel.com/v1/public/characters?nameStartsWith=" +
       defaultCharacters[i] +
@@ -56,11 +58,12 @@ async function marvelDefault() {
     console.log(data);
     console.log("name_loop is " + name_loop);
 
-    for (i = 0; i < name_loop - 1; i++) {
+    for (let i = 0; i < name_loop - 1; i++) {
       const characterName = data.data.results[i].name;
       const characterImage = data.data.results[i].thumbnail.path + ".jpg";
       const characterDescription = data.data.results[i].description;
       if (characterDescription === "") {
+        console.log('Ignoring: no description')
         continue
       }
       const headingElement = $(`
@@ -378,5 +381,5 @@ async function redditDefault() {
 
 if (characterInput.value.length == 0) {
   marvelDefault()
-  redditDefault()
+  // redditDefault()
 }
