@@ -191,7 +191,7 @@ async function redditMarvel() {
     {
       //change to 100 if using the search for loop
       headers: {
-        Authorization: "bearer 675480154540-bdOolcI7Pbyzqlz0dyVINbzLaBHFaQ",
+        Authorization: "bearer 675480154540-bcU08W97nQST6b3QQaQTEMKba7DZZA",
       },
     }
   );
@@ -226,7 +226,7 @@ async function reddit() {
     {
       //change to 100 if using the search for loop
       headers: {
-        Authorization: "bearer 675480154540-bdOolcI7Pbyzqlz0dyVINbzLaBHFaQ",
+        Authorization: "bearer 675480154540-bcU08W97nQST6b3QQaQTEMKba7DZZA",
       },
     }
   );
