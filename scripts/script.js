@@ -12,7 +12,9 @@ let characterInput = document.getElementById("search-box");
 
 const search = function () {
   $("#card-container").empty();
+  $("#reddit").empty();
   marvel()
+  reddit()
 
 }
 
@@ -113,7 +115,7 @@ async function marvel() {
   const name_loop = data.data.count;
   console.log(data);
   console.log("name_loop is " + name_loop);
-  for (i = 0; i < name_loop - 1; i++) {
+  for (let i = 0; i < name_loop - 1; i++) {
     const characterName = data.data.results[i].name;
     const characterImage = data.data.results[i].thumbnail.path + ".jpg";
     const characterDescription = data.data.results[i].description;
@@ -227,7 +229,7 @@ async function reddit() {
   const data = await response.json();
   const children = data.data.children.length;
   console.log(data);
-  for (i = 0; i < children; i++) {
+  for (let i = 0; i < 12; i++) {
     const characterTitleR = data.data.children[i].data.title;
     const characterTextR = data.data.children[i].data.selftext;
     const characterCommentCountR = data.data.children[i].data.num_comments;
