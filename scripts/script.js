@@ -44,7 +44,7 @@ searchBtn.addEventListener("click", search)
 //;/v1/public/characters/
 
 async function marvelDefault() {
-  const defaultCharacters = ["iron_man", "moon_knight", "thanos", "doctor_strange"]
+  const defaultCharacters = ["iron_man", "wolverine", "thanos",]
   const marvelFeatured = defaultCharacters.length
   let name_loop;
   for (let i = 0; i < marvelFeatured; i++) {
@@ -236,6 +236,7 @@ async function reddit() {
     const characterImageURLR = data.data.children[i].data.thumbnail;
     const characterPermaR = data.data.children[i].data.permalink;
     const characterLinkR = "https://www.reddit.com" + characterPermaR;
+    const characterCommentCountRmessage = characterCommentCountR+ " comments"
     console.log(characterTitleR);
     console.log(characterCommentCountR);
     console.log(characterTextR);
@@ -253,7 +254,7 @@ async function reddit() {
           <div class="content" id="post-1-content">
             <p>
               <a href="${characterLinkR}" target="_blank">
-                <strong>${characterTitleR}</strong> <small>${characterTitleR}</small> <small>31m</small>
+                <strong>${characterTitleR}</strong> <small>${characterCommentCountRmessage}</small> <small>31m</small>
               </a>
               <br>
               ${characterTextR}
@@ -320,7 +321,7 @@ async function redditDefault() {
     const characterImageURLR = data.data.children[i].data.thumbnail;
     const characterPermaR = data.data.children[i].data.permalink;
     const characterLinkR = "https://www.reddit.com" + characterPermaR;
-    const characterCommentCount = "Comments: " + characterCommentCountR
+    const characterCommentCount = characterCommentCountR + " comments"
     console.log(characterTitleR);
     console.log(characterCommentCountR);
     console.log(characterTextR);
@@ -339,7 +340,7 @@ async function redditDefault() {
           <div class="content" id="post-1-content">
             <p>
               <a href="${characterLinkR}" target="_blank">
-                <strong>${characterTitleR}</strong> <small>${characterCommentCountR}</small> <small></small>
+                <strong>${characterTitleR}</strong> <small>${characterCommentCount}</small> <small></small>
               </a>
               <br>
               ${characterTextR}
