@@ -1,3 +1,4 @@
+'use strict'
 let characterName = document.getElementById("character-name");
 let characterNameDisplay = "";
 let characterDiscription = document.getElementById("character-description");
@@ -9,9 +10,11 @@ let searchBtn = document.getElementById("search-button");
 let characterInput = document.getElementById("search-box");
 
 
-const search = function(){
+const search = function () {
   $("#card-container").empty();
+  $("#reddit").empty();
   marvel()
+  reddit()
 
 }
 
@@ -41,29 +44,32 @@ searchBtn.addEventListener("click", search)
 //;/v1/public/characters/
 
 async function marvelDefault() {
-  const defaultCharacters = ["iron_man","moon_knight", "thanos", "doctor_strange"]
+  const defaultCharacters = ["iron_man", "wolverine", "thanos",]
   const marvelFeatured = defaultCharacters.length
   let name_loop;
-  for (i = 0; i < marvelFeatured; i++){
-  const response = await fetch(
-    "https://gateway.marvel.com/v1/public/characters?nameStartsWith=" +
+  for (let i = 0; i < marvelFeatured; i++) {
+    console.log("i is " + i)
+    const response = await fetch(
+      "https://gateway.marvel.com/v1/public/characters?nameStartsWith=" +
       defaultCharacters[i] +
       "&limit=100&ts=1&apikey=c6c410f564a7361717294de109f25d9a&hash=bb8d62d7bf94d0ca3c9a989e86a12dda"
-  );
-  const data = await response.json();
-  name_loop = data.data.count
+    );
+    const data = await response.json();
+    name_loop = data.data.count
 
-  console.log(data);
-  console.log("name_loop is " + name_loop);
+    console.log(data);
+    console.log("name_loop is " + name_loop);
 
-  for (i = 0; i < name_loop - 1; i++) {
-    const characterName = data.data.results[i].name;
-    const characterImage = data.data.results[i].thumbnail.path + ".jpg";
-    const characterDescription = data.data.results[i].description;
-    if (characterDescription ===  ""){
-      continue
-    }
-    const headingElement = $(`
+    for (let i = 0; i < name_loop - 1; i++) {
+      const characterName = data.data.results[i].name;
+      const characterImage = data.data.results[i].thumbnail.path + ".jpg";
+      const characterDescription = data.data.results[i].description;
+      const characterComics = data.data.results[i].urls[0].url;
+      if (characterDescription === "") {
+        console.log('Ignoring: no description')
+        continue
+      }
+      const headingElement = $(`
 
         <div class="column">
           <div class="card">
@@ -82,7 +88,7 @@ async function marvelDefault() {
           </div>
           <footer class="card-footer">
           
-            <a href="#" class="card-footer-item">Learn more</a>
+            <a href="${characterComics}" target="_blank" class="card-footer-item">Learn more</a>
           </footer>
           </div>
           </div>
@@ -90,9 +96,10 @@ async function marvelDefault() {
 
 
 `);
-$("#card-container").append(headingElement);
-}
-}};
+      $("#card-container").append(headingElement);
+    }
+  }
+};
 
 
 async function marvel() {
@@ -103,22 +110,24 @@ async function marvel() {
 
   const response = await fetch(
     "https://gateway.marvel.com/v1/public/characters?nameStartsWith=" +
-      marvelInputNoS +
-      "&limit=100&ts=1&apikey=c6c410f564a7361717294de109f25d9a&hash=bb8d62d7bf94d0ca3c9a989e86a12dda"
+    marvelInputNoS +
+    "&limit=100&ts=1&apikey=c6c410f564a7361717294de109f25d9a&hash=bb8d62d7bf94d0ca3c9a989e86a12dda"
   );
   const data = await response.json();
   const name_loop = data.data.count;
   console.log(data);
   console.log("name_loop is " + name_loop);
-  for (i = 0; i < name_loop - 1; i++) {
+  for (let i = 0; i < name_loop - 1; i++) {
     const characterName = data.data.results[i].name;
     const characterImage = data.data.results[i].thumbnail.path + ".jpg";
     const characterDescription = data.data.results[i].description;
-    if (characterDescription ===  ""){
+    const characterComics = data.data.results[i].urls[0].url;
+    console.log(characterComics)
+    if (characterDescription === "") {
       continue
     }
-    else{
-    const headingElement = $(`
+    else {
+      const headingElement = $(`
         
 
         <div class="column">
@@ -138,7 +147,7 @@ async function marvel() {
           </div>
           <footer class="card-footer">
           
-            <a href="#" class="card-footer-item">Learn more</a>
+            <a href="${characterComics}" target="_blank" class="card-footer-item">Learn more</a>
           </footer>
           </div>
         </div>
@@ -147,8 +156,9 @@ async function marvel() {
 
 `);
 
-    $("#card-container").append(headingElement);
-  }}
+      $("#card-container").append(headingElement);
+    }
+  }
 
   //console.log("name_for_loop runs normally")
   //console.log(data.data.results[i])
@@ -223,13 +233,14 @@ async function reddit() {
   const data = await response.json();
   const children = data.data.children.length;
   console.log(data);
-  for (i = 0; i < children; i++) {
+  for (let i = 0; i < 12; i++) {
     const characterTitleR = data.data.children[i].data.title;
     const characterTextR = data.data.children[i].data.selftext;
     const characterCommentCountR = data.data.children[i].data.num_comments;
     const characterImageURLR = data.data.children[i].data.thumbnail;
     const characterPermaR = data.data.children[i].data.permalink;
     const characterLinkR = "https://www.reddit.com" + characterPermaR;
+    const characterCommentCountRmessage = characterCommentCountR+ " comments"
     console.log(characterTitleR);
     console.log(characterCommentCountR);
     console.log(characterTextR);
@@ -246,7 +257,9 @@ async function reddit() {
         <div class="media-content" id="post-1">
           <div class="content" id="post-1-content">
             <p>
-              <strong>${characterTitleR}</strong> <small>${characterTitleR}</small> <small>31m</small>
+              <a href="${characterLinkR}" target="_blank">
+                <strong>${characterTitleR}</strong> <small>${characterCommentCountRmessage}</small> <small></small>
+              </a>
               <br>
               ${characterTextR}
             </p>
@@ -305,14 +318,14 @@ async function redditDefault() {
   const data = await response.json();
   const children = data.data.children.length;
   console.log(data);
-  for (i = 0; i < 12; i++) {
+  for (let i = 0; i < 12; i++) {
     const characterTitleR = data.data.children[i].data.title;
     const characterTextR = data.data.children[i].data.selftext;
     const characterCommentCountR = data.data.children[i].data.num_comments;
     const characterImageURLR = data.data.children[i].data.thumbnail;
     const characterPermaR = data.data.children[i].data.permalink;
     const characterLinkR = "https://www.reddit.com" + characterPermaR;
-    const characterCommentCount = "Comments: " + characterCommentCountR
+    const characterCommentCount = characterCommentCountR + " comments"
     console.log(characterTitleR);
     console.log(characterCommentCountR);
     console.log(characterTextR);
@@ -330,7 +343,9 @@ async function redditDefault() {
         <div class="media-content" id="post-1">
           <div class="content" id="post-1-content">
             <p>
-              <href<strong>${characterTitleR}</strong> <small>${characterTitleR}</small> <small></small>
+              <a href="${characterLinkR}" target="_blank">
+                <strong>${characterTitleR}</strong> <small>${characterCommentCount}</small> <small></small>
+              </a>
               <br>
               ${characterTextR}
             </p>
@@ -375,7 +390,7 @@ async function redditDefault() {
 //reddit();
 //marvel()
 
-if (characterInput.value.length == 0){
+if (characterInput.value.length == 0) {
   marvelDefault()
   redditDefault()
 }
