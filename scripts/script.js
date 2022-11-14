@@ -64,6 +64,7 @@ async function marvelDefault() {
       const characterName = data.data.results[i].name;
       const characterImage = data.data.results[i].thumbnail.path + ".jpg";
       const characterDescription = data.data.results[i].description;
+      const characterComics = data.data.results[i].urls[0].url;
       if (characterDescription === "") {
         console.log('Ignoring: no description')
         continue
@@ -87,7 +88,7 @@ async function marvelDefault() {
           </div>
           <footer class="card-footer">
           
-            <a href="#" class="card-footer-item">Learn more</a>
+            <a href="${characterComics}" class="card-footer-item">Learn more</a>
           </footer>
           </div>
 
@@ -119,6 +120,8 @@ async function marvel() {
     const characterName = data.data.results[i].name;
     const characterImage = data.data.results[i].thumbnail.path + ".jpg";
     const characterDescription = data.data.results[i].description;
+    const characterComics = data.data.results[i].urls[0].url;
+    console.log(characterComics)
     if (characterDescription === "") {
       continue
     }
@@ -143,7 +146,7 @@ async function marvel() {
           </div>
           <footer class="card-footer">
           
-            <a href="#" class="card-footer-item">Learn more</a>
+            <a href="${characterComics}" class="card-footer-item">Learn more</a>
           </footer>
           </div>
         </div>
@@ -254,7 +257,7 @@ async function reddit() {
           <div class="content" id="post-1-content">
             <p>
               <a href="${characterLinkR}" target="_blank">
-                <strong>${characterTitleR}</strong> <small>${characterCommentCountRmessage}</small> <small>31m</small>
+                <strong>${characterTitleR}</strong> <small>${characterCommentCountRmessage}</small> <small></small>
               </a>
               <br>
               ${characterTextR}
