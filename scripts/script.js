@@ -252,7 +252,9 @@ async function reddit() {
         <div class="media-content" id="post-1">
           <div class="content" id="post-1-content">
             <p>
-              <strong>${characterTitleR}</strong> <small>${characterTitleR}</small> <small>31m</small>
+              <a href="${characterLinkR}" target="_blank">
+                <strong>${characterTitleR}</strong> <small>${characterTitleR}</small> <small>31m</small>
+              </a>
               <br>
               ${characterTextR}
             </p>
@@ -336,7 +338,9 @@ async function redditDefault() {
         <div class="media-content" id="post-1">
           <div class="content" id="post-1-content">
             <p>
-              <href<strong>${characterTitleR}</strong> <small>${characterTitleR}</small> <small></small>
+              <a href="${characterLinkR}" target="_blank">
+                <strong>${characterTitleR}</strong> <small>${characterCommentCountR}</small> <small></small>
+              </a>
               <br>
               ${characterTextR}
             </p>
