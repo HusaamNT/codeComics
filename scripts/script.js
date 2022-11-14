@@ -88,7 +88,7 @@ async function marvelDefault() {
           </div>
           <footer class="card-footer">
           
-            <a href="${characterComics}" class="card-footer-item">Learn more</a>
+            <a href="${characterComics}" target="_blank" class="card-footer-item">Learn more</a>
           </footer>
           </div>
 
@@ -146,7 +146,7 @@ async function marvel() {
           </div>
           <footer class="card-footer">
           
-            <a href="${characterComics}" class="card-footer-item">Learn more</a>
+            <a href="${characterComics}" target="_blank" class="card-footer-item">Learn more</a>
           </footer>
           </div>
         </div>
