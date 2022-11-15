@@ -12,6 +12,7 @@ You are able to interact with other fan posts on either the Marvel Reddit page o
 
 The future of this website is to be able to socialise with other users on this page by user logins, create a lore page to futher establish this as the go-to Marvel social page! We are gathering more potentiel ideas from the users so they can have a say on the platform they use!
 
+![code-comics-website](https://user-images.githubusercontent.com/113865888/201793456-11485de3-661e-47be-9339-db0590c767ae.png)
 
 
 
